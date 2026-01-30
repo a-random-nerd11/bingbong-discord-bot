@@ -17,12 +17,31 @@ responsesIrrelevant = ["i miss my wife", "i am bingbong"]
 load_dotenv()
 discordBotToken = os.getenv("BOTTOKEN")
 
+#choose a response
+def response():
+	responseOptions = [responsesPositive,responsesNegative,responsesUncertain,responsesIrrelevant,responsesIrrelevant,responsesIrrelevant]
+	responseType = random.choice(responseOptions)
+	response = random.choice(responseType)
+	print(response)
+	return response
+
 #initialise discord bot
 intents = discord.Intents.default()
 intents.message_content = True
-bingBongBot = commands.Bot(intents=intents)
+bingBongBot = commands.Bot(command_prefix="",intents=intents)
 
 @bingBongBot.event
 async def on_ready():
-	print("logged in successfully")
+	print("y-yeah, definitely! I'm ready to rumble!")
+
+
+#runs on ping
+@bingBongBot.event
+async def on_message(message):
+	if "<@1465630334409375878>" in message.content:
+		await message.channel.send(response())
+
+
+response()
+
 bingBongBot.run(discordBotToken)
