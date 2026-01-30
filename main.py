@@ -16,6 +16,7 @@ responsesIrrelevant = ["i miss my wife", "i am bingbong"]
 # setup .env files to import Discord app credentials
 load_dotenv()
 discordBotToken = os.getenv("BOTTOKEN")
+discordAppId = os.getenv("APPID")
 
 #choose a response
 def response():
@@ -38,7 +39,7 @@ async def on_ready():
 #runs on ping
 @bingBongBot.event
 async def on_message(message):
-	if "<@1465630334409375878>" in message.content:
+	if f"<@{discordAppId}>" in message.content:
 		await message.channel.send(response())
 
 
