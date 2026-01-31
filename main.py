@@ -20,7 +20,7 @@ discordAppId = os.getenv("APPID")
 
 #choose a response
 def response():
-	responseOptions = [responsesPositive,responsesNegative,responsesUncertain,responsesIrrelevant,responsesIrrelevant,responsesIrrelevant]
+	responseOptions = [responsesPositive,responsesNegative,responsesUncertain,responsesIrrelevant,responsesIrrelevant]
 	responseType = random.choice(responseOptions)
 	response = random.choice(responseType)
 	print(response)
@@ -42,7 +42,5 @@ async def on_message(message):
 	if f"<@{discordAppId}>" in message.content:
 		await message.channel.send(response())
 
-
-response()
 
 bingBongBot.run(discordBotToken)
